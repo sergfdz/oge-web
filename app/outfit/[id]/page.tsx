@@ -1,7 +1,8 @@
-type Props = { params: { id: string } };
+type Props = { params: Promise<{ id: string }> };
 
-export default function OutfitPage({ params }: Props) {
-  const deepLink = `outfitrater://outfit/${params.id}`;
+export default async function OutfitPage({ params }: Props) {
+  const { id } = await params;
+  const deepLink = `outfitrater://outfit/${id}`;
 
   return (
     <div style={styles.container}>
