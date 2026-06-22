@@ -1,0 +1,11 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "TB6DF8S3FL.com.oge.app",
+        "paths": ["/outfit/*"]
+      }
+    ]
+  }
+}
