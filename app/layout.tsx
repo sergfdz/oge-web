@@ -1,6 +1,5 @@
 export const metadata = {
-  title: 'OGE — Daily Outfit Rater',
-  description: 'Rate and discover daily outfits.',
+  title: 'OGE',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
