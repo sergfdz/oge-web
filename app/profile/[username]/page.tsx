@@ -4,12 +4,13 @@ import { AutoRedirect } from '@/app/components/auto-redirect';
 type Props = { params: Promise<{ username: string }> };
 
 async function getProfileData(username: string) {
-  const { data: profile } = await supabase
+  const { data: profile, error } = await supabase
     .from('profiles')
     .select('id, username, full_name, avatar_url, bio, country_code, city, show_location')
     .eq('username', username)
     .maybeSingle();
 
+  if (error) throw new Error(`profiles query: ${error.message} (${error.code})`);
   if (!profile) return null;
 
   const [

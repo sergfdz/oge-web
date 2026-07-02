@@ -4,13 +4,14 @@ import { AutoRedirect } from '@/app/components/auto-redirect';
 type Props = { params: Promise<{ id: string }> };
 
 async function getOutfit(id: string) {
-  const { data: outfit } = await supabase
+  const { data: outfit, error } = await supabase
     .from('outfits')
     .select('id, description, final_score, vote_count, user_id, created_at, outfit_images(url, position)')
     .eq('id', id)
     .eq('is_private', false)
     .maybeSingle();
 
+  if (error) throw new Error(`outfits query: ${error.message} (${error.code})`);
   if (!outfit) return null;
 
   const { data: profile } = await supabase
