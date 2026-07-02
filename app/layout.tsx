@@ -1,5 +1,7 @@
+import './globals.css';
+
 export const metadata = {
-  title: 'OGE',
+  title: 'Oge',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
