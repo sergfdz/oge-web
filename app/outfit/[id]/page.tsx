@@ -50,7 +50,7 @@ export default async function OutfitPage({ params }: Props) {
     return (
       <div style={s.page}>
         <div style={s.card}>
-          <h1 style={s.logo}>OGE</h1>
+          <img src="/oge-logo.png" alt="OGE" style={s.logo} />
           <p style={s.sub}>Daily Outfit Rater</p>
           <p style={s.body}>This outfit is not available.</p>
           <StoreButtons />
@@ -138,8 +138,8 @@ const s: Record<string, React.CSSProperties> = {
     maxWidth: 400,
     width: '100%',
   },
-  logo: { fontSize: 28, fontWeight: 800, margin: '0 0 4px', letterSpacing: -1 },
-  sub: { fontSize: 13, color: '#666', margin: '0 0 24px' },
+  logo: { width: 48, height: 48, objectFit: 'contain', marginBottom: 8 },
+  sub: { display: 'none' },
   body: { fontSize: 16, color: '#ccc', marginBottom: 24 },
   heroWrap: {
     position: 'relative',
