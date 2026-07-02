@@ -1,10 +1,12 @@
 {
   "applinks": {
-    "apps": [],
     "details": [
       {
-        "appID": "TB6DF8S3FL.com.oge.app",
-        "paths": ["/outfit/*"]
+        "appIDs": ["TB6DF8S3FL.com.oge.app", "TB6DF8S3FL.com.oge.app.pre"],
+        "components": [
+          { "/": "/outfit/*" },
+          { "/": "/profile/*" }
+        ]
       }
     ]
   }
