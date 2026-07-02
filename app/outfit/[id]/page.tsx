@@ -48,6 +48,7 @@ export default async function OutfitPage({ params }: Props) {
   if (!result) {
     return (
       <div style={s.page}>
+        <TopBar label="outfit" />
         <div style={s.card}>
           <img src="/oge-logo.png" alt="Oge" style={s.logo} />
           <p style={s.body}>This outfit is not available.</p>
@@ -63,6 +64,7 @@ export default async function OutfitPage({ params }: Props) {
   return (
     <div style={s.page}>
       <AutoRedirect href={deepLink} />
+      <TopBar label={profile?.username ? `@${profile.username}` : 'outfit'} />
 
       <div style={s.card}>
         {/* Photo carousel */}
@@ -110,6 +112,14 @@ export default async function OutfitPage({ params }: Props) {
   );
 }
 
+function TopBar({ label }: { label: string }) {
+  return (
+    <div style={s.topBar}>
+      <p style={s.topBarLabel}>{label}</p>
+    </div>
+  );
+}
+
 function BottomBar({ deepLink }: { deepLink: string }) {
   return (
     <div style={s.bottomBar}>
@@ -123,15 +133,22 @@ function BottomBar({ deepLink }: { deepLink: string }) {
 }
 
 const s: Record<string, React.CSSProperties> = {
-  page: {
-    minHeight: '100vh',
+  page: { minHeight: '100vh', background: '#000', paddingBottom: 160 },
+  topBar: {
+    position: 'sticky',
+    top: 0,
+    zIndex: 10,
     display: 'flex',
-    alignItems: 'flex-start',
+    alignItems: 'center',
     justifyContent: 'center',
-    padding: '24px 24px 160px',
-    background: '#000',
+    height: 52,
+    background: 'rgba(0,0,0,0.6)',
+    backdropFilter: 'blur(20px)',
+    WebkitBackdropFilter: 'blur(20px)',
+    borderBottom: '1px solid rgba(255,255,255,0.06)',
   },
-  card: { maxWidth: 400, width: '100%' },
+  topBarLabel: { margin: 0, fontWeight: 700, fontSize: 15, color: '#fff' },
+  card: { maxWidth: 400, width: '100%', margin: '0 auto', padding: '16px 16px 0' },
   logo: { width: 48, height: 48, objectFit: 'contain', marginBottom: 24 },
   body: { fontSize: 16, color: '#ccc', marginBottom: 24 },
   carouselWrap: {
