@@ -6,7 +6,7 @@ type Props = { params: Promise<{ username: string }> };
 async function getProfileData(username: string) {
   const { data: profile, error } = await supabase
     .from('profiles')
-    .select('id, username, full_name, avatar_url, bio, country_code, city, show_location')
+    .select('id, username, full_name, avatar_url, bio, city, show_location')
     .eq('username', username)
     .maybeSingle();
 
@@ -46,7 +46,7 @@ export async function generateMetadata({ params }: Props) {
   const result = await getProfileData(username);
   const avatar = result?.profile.avatar_url;
   return {
-    title: `@${username} · OGE`,
+    title: `@${username} · Oge`,
     description: result?.profile.bio ?? 'Oge — Daily Outfit Rater',
     openGraph: avatar ? { images: [{ url: avatar }] } : undefined,
   };
@@ -60,9 +60,10 @@ export default async function ProfilePage({ params }: Props) {
   if (!result) {
     return (
       <div style={s.page}>
-        <div style={s.card}>
+        <TopBar username={username} />
+        <div style={s.notFound}>
           <img src="/oge-logo.png" alt="Oge" style={s.logo} />
-          <p style={s.body}>@{username} not found.</p>
+          <p style={s.notFoundText}>@{username} not found.</p>
         </div>
         <BottomBar deepLink={deepLink} />
       </div>
@@ -74,31 +75,46 @@ export default async function ProfilePage({ params }: Props) {
   return (
     <div style={s.page}>
       <AutoRedirect href={deepLink} />
+      <TopBar username={profile.username} />
 
-      <div style={s.card}>
-        <div style={s.header}>
+      <div style={s.content}>
+        {/* Info row: avatar · name+followers · score */}
+        <div style={s.infoRow}>
           {profile.avatar_url
             ? <img src={profile.avatar_url} alt={profile.username} style={s.avatar} />
             : <div style={s.avatarFallback} />}
-          <p style={s.username}>@{profile.username}</p>
-          {profile.full_name && <p style={s.fullName}>{profile.full_name}</p>}
-          {profile.bio && <p style={s.bio}>{profile.bio}</p>}
-        </div>
 
-        <div style={s.stats}>
-          <Stat label="followers" value={followerCount} />
-          <div style={s.statDivider} />
-          <Stat label="following" value={followingCount} />
-          <div style={s.statDivider} />
-          <Stat label="outfits" value={outfits.length} />
+          <div style={s.userInfo}>
+            {profile.full_name && <p style={s.fullName}>{profile.full_name}</p>}
+            <p style={s.usernameText}>@{profile.username}</p>
+            <p style={s.followStats}>
+              <span style={s.followNum}>{followerCount}</span>
+              <span style={s.followLabel}> seguidores</span>
+              <span style={s.followDot}> · </span>
+              <span style={s.followNum}>{followingCount}</span>
+              <span style={s.followLabel}> siguiendo</span>
+            </p>
+          </div>
+
           {avgScore !== null && (
-            <>
-              <div style={s.statDivider} />
-              <Stat label="avg score" value={avgScore.toFixed(1)} />
-            </>
+            <div style={s.scoreBlock}>
+              <p style={s.scoreValue}>{avgScore.toFixed(1)}</p>
+              <p style={s.scoreLabel}>punt. media</p>
+            </div>
           )}
         </div>
 
+        {/* Bio + location */}
+        {(profile.bio || (profile.show_location && profile.city)) && (
+          <div style={s.bioSection}>
+            {profile.bio && <p style={s.bio}>{profile.bio}</p>}
+            {profile.show_location && profile.city && (
+              <p style={s.location}>📍 {profile.city}</p>
+            )}
+          </div>
+        )}
+
+        {/* 2-col outfit grid */}
         {outfits.length > 0 && (
           <div style={s.grid}>
             {outfits.map((o: { id: string; coverUrl: string | null; score: number | null }) => (
@@ -120,11 +136,10 @@ export default async function ProfilePage({ params }: Props) {
   );
 }
 
-function Stat({ label, value }: { label: string; value: number | string }) {
+function TopBar({ username }: { username: string }) {
   return (
-    <div style={{ textAlign: 'center' }}>
-      <p style={{ margin: 0, fontWeight: 700, fontSize: 18, color: '#fff' }}>{value}</p>
-      <p style={{ margin: 0, fontSize: 12, color: '#666', marginTop: 2 }}>{label}</p>
+    <div style={s.topBar}>
+      <p style={s.topBarUsername}>@{username}</p>
     </div>
   );
 }
@@ -142,53 +157,66 @@ function BottomBar({ deepLink }: { deepLink: string }) {
 }
 
 const s: Record<string, React.CSSProperties> = {
-  page: {
-    minHeight: '100vh',
+  page: { minHeight: '100vh', background: '#000', paddingBottom: 160 },
+  topBar: {
+    position: 'sticky',
+    top: 0,
+    zIndex: 10,
     display: 'flex',
-    alignItems: 'flex-start',
-    justifyContent: 'center',
-    padding: '32px 24px 160px',
-    background: '#000',
-  },
-  card: { maxWidth: 440, width: '100%' },
-  logo: { width: 48, height: 48, objectFit: 'contain', marginBottom: 24 },
-  body: { fontSize: 16, color: '#ccc', marginBottom: 24 },
-  header: { display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: 24 },
-  avatar: { width: 88, height: 88, borderRadius: '50%', objectFit: 'cover', marginBottom: 12 },
-  avatarFallback: { width: 88, height: 88, borderRadius: '50%', background: '#222', marginBottom: 12 },
-  username: { margin: '0 0 4px', fontWeight: 700, fontSize: 18, color: '#fff' },
-  fullName: { margin: '0 0 8px', fontSize: 14, color: '#888' },
-  bio: { margin: 0, fontSize: 14, color: '#aaa', textAlign: 'center', lineHeight: '1.5' },
-  stats: {
-    display: 'flex',
-    justifyContent: 'center',
     alignItems: 'center',
-    gap: 20,
-    padding: '16px 0',
-    marginBottom: 20,
-    borderTop: '1px solid #111',
-    borderBottom: '1px solid #111',
+    justifyContent: 'center',
+    height: 52,
+    background: 'rgba(0,0,0,0.6)',
+    backdropFilter: 'blur(20px)',
+    WebkitBackdropFilter: 'blur(20px)',
+    borderBottom: '1px solid rgba(255,255,255,0.06)',
   },
-  statDivider: { width: 1, height: 24, background: '#222' },
+  topBarUsername: { margin: 0, fontWeight: 700, fontSize: 15, color: '#fff' },
+  content: { padding: '16px 16px 0' },
+
+  // Info row
+  infoRow: { display: 'flex', alignItems: 'center', gap: 14, marginBottom: 14 },
+  avatar: { width: 72, height: 72, borderRadius: '50%', objectFit: 'cover', flexShrink: 0 },
+  avatarFallback: { width: 72, height: 72, borderRadius: '50%', background: '#222', flexShrink: 0 },
+  userInfo: { flex: 1, minWidth: 0 },
+  fullName: { margin: '0 0 2px', fontWeight: 700, fontSize: 15, color: '#fff', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' },
+  usernameText: { margin: '0 0 6px', fontSize: 13, color: '#888' },
+  followStats: { margin: 0, fontSize: 13, color: '#fff' },
+  followNum: { fontWeight: 700 },
+  followLabel: { color: '#888' },
+  followDot: { color: '#555' },
+  scoreBlock: { textAlign: 'center', flexShrink: 0 },
+  scoreValue: { margin: '0 0 2px', fontWeight: 800, fontSize: 22, color: '#fff' },
+  scoreLabel: { margin: 0, fontSize: 11, color: '#666' },
+
+  // Bio
+  bioSection: { marginBottom: 16 },
+  bio: { margin: '0 0 4px', fontSize: 14, color: '#ccc', lineHeight: '1.5' },
+  location: { margin: 0, fontSize: 13, color: '#666' },
+
+  // Grid 2 cols
   grid: {
     display: 'grid',
-    gridTemplateColumns: '1fr 1fr 1fr',
-    gap: 2,
+    gridTemplateColumns: '1fr 1fr',
+    gap: 3,
   },
   gridItem: { position: 'relative', aspectRatio: '3/4', overflow: 'hidden' },
   gridImg: { width: '100%', height: '100%', objectFit: 'cover', display: 'block' },
   gridPlaceholder: { width: '100%', height: '100%', background: '#111' },
   gridScore: {
     position: 'absolute',
-    bottom: 4,
-    right: 4,
-    background: 'rgba(0,0,0,0.7)',
+    bottom: 6,
+    right: 6,
+    background: 'rgba(0,0,0,0.72)',
+    backdropFilter: 'blur(6px)',
     color: '#fff',
-    fontSize: 11,
+    fontSize: 12,
     fontWeight: 700,
-    padding: '2px 6px',
+    padding: '3px 8px',
     borderRadius: 50,
   },
+
+  // Bottom bar
   bottomBar: {
     position: 'fixed',
     bottom: 0,
@@ -222,4 +250,9 @@ const s: Record<string, React.CSSProperties> = {
     fontSize: 13,
     textDecoration: 'none',
   },
+
+  // Not found
+  notFound: { display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '60vh' },
+  logo: { width: 48, height: 48, objectFit: 'contain', marginBottom: 16 },
+  notFoundText: { fontSize: 16, color: '#555', margin: 0 },
 };
