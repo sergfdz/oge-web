@@ -1,5 +1,6 @@
 import { supabaseServer as supabase } from '@/lib/supabase-server';
 import { AutoRedirect } from '@/app/components/auto-redirect';
+import { OpenInAppButton } from '@/app/components/open-in-app-button';
 
 type Props = { params: Promise<{ id: string }> };
 
@@ -123,7 +124,7 @@ function TopBar({ label }: { label: string }) {
 function BottomBar({ deepLink }: { deepLink: string }) {
   return (
     <div style={s.bottomBar}>
-      <a href={deepLink} style={s.cta}>Open in Oge</a>
+      <OpenInAppButton deepLink={deepLink} style={s.cta} />
       <div style={s.storeRow}>
         <a href="https://apps.apple.com" style={s.storeBtn}>App Store</a>
         <a href="https://play.google.com" style={s.storeBtn}>Google Play</a>
