@@ -3,7 +3,7 @@ export const metadata = {
 };
 
 const EFFECTIVE_DATE = 'July 2, 2026';
-const CONTACT_EMAIL = 'hello@oge.app';
+const CONTACT_EMAIL = 'hello@ogeapp.com';
 
 export default function PrivacyPage() {
   return (
