@@ -1,4 +1,4 @@
-import { supabase } from '@/lib/supabase';
+import { supabaseServer as supabase } from '@/lib/supabase-server';
 import { AutoRedirect } from '@/app/components/auto-redirect';
 
 type Props = { params: Promise<{ id: string }> };
