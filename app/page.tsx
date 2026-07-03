@@ -28,10 +28,7 @@ function Nav() {
   return (
     <nav style={s.nav}>
       <div style={s.navInner}>
-        <div style={s.navLogo}>
-          <img src="/oge-logo.png" alt="Oge" style={s.navLogoImg} />
-          <span style={s.navLogoText}>Oge</span>
-        </div>
+        <div />
         <a href="#waitlist" style={s.navCta}>Join waitlist</a>
       </div>
     </nav>
@@ -494,7 +491,7 @@ const s: Record<string, React.CSSProperties> = {
     borderTop: '1px solid rgba(255,255,255,0.05)',
   },
   waitlistInner: { maxWidth: 560, margin: '0 auto', textAlign: 'center' as React.CSSProperties['textAlign'], display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 20 },
-  waitlistLogo: { width: 80, height: 80, objectFit: 'contain', marginBottom: 8 },
+  waitlistLogo: { width: 120, height: 120, objectFit: 'contain', marginBottom: 4 },
   waitlistTitle: { fontSize: 'clamp(28px, 4vw, 44px)', fontWeight: 800, letterSpacing: -1, margin: 0, color: '#fff' },
   waitlistSub: { fontSize: 16, color: '#555', lineHeight: 1.7, margin: 0 },
 
