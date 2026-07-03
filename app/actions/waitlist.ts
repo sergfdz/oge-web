@@ -4,7 +4,7 @@ import { supabaseServer as supabase } from '@/lib/supabase-server';
 
 export async function joinWaitlist(email: string): Promise<{ error?: string }> {
   if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    return { error: 'Please enter a valid email address.' };
+    return { error: 'Introduce un email válido.' };
   }
 
   const { error } = await supabase
@@ -13,9 +13,9 @@ export async function joinWaitlist(email: string): Promise<{ error?: string }> {
 
   if (error) {
     if (error.code === '23505') {
-      return { error: "You're already on the list!" };
+      return { error: '¡Ya estás en la lista!' };
     }
-    return { error: 'Something went wrong. Please try again.' };
+    return { error: 'Algo salió mal. Inténtalo de nuevo.' };
   }
 
   return {};

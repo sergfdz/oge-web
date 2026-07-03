@@ -26,7 +26,7 @@ export function WaitlistForm() {
     return (
       <div style={s.successBox}>
         <span style={s.successIcon}>✓</span>
-        <p style={s.successText}>You're on the list. We'll reach out when Oge launches.</p>
+        <p style={s.successText}>Ya estás en la lista. Te avisaremos cuando Oge lance.</p>
       </div>
     );
   }
@@ -44,7 +44,7 @@ export function WaitlistForm() {
           style={s.input}
         />
         <button type="submit" disabled={state === 'loading'} style={s.btn}>
-          {state === 'loading' ? '...' : 'Join waitlist'}
+          {state === 'loading' ? '...' : 'Apuntarme'}
         </button>
       </div>
       {state === 'error' && <p style={s.errorText}>{errorMsg}</p>}

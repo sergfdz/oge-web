@@ -2,10 +2,10 @@ import { WaitlistForm } from '@/app/components/waitlist-form';
 
 export const metadata = {
   title: 'Oge',
-  description: 'Post your outfit. Get rated. Climb the ranking. The social app where style meets competition.',
+  description: 'Publica tu outfit del día. La comunidad lo puntúa del 1 al 10. Compite con tu ciudad y sube al top de tu país.',
   openGraph: {
-    title: 'Oge — Daily Outfit Rater',
-    description: 'Post your outfit. Get rated. Climb the ranking.',
+    title: 'Oge',
+    description: 'Publica tu outfit. Recibe puntuaciones. Sube al ranking.',
     images: [{ url: '/og-image.png' }],
   },
 };
@@ -29,7 +29,7 @@ function Nav() {
     <nav style={s.nav}>
       <div style={s.navInner}>
         <div />
-        <a href="#waitlist" style={s.navCta}>Join waitlist</a>
+        <a href="#waitlist" style={s.navCta}>Unirse a la lista</a>
       </div>
     </nav>
   );
@@ -41,18 +41,18 @@ function Hero() {
       <div style={s.heroInner}>
         <div style={s.badge}>
           <span style={s.badgeDot} />
-          Coming soon to iOS & Android
+          Próximamente en iOS y Android
         </div>
         <h1 style={s.heroTitle}>
-          Post your outfit.<br />
-          <span style={s.heroAccent}>Get rated.</span><br />
-          Climb the ranking.
+          Publica tu outfit.<br />
+          <span style={s.heroAccent}>Recibe puntuaciones.</span><br />
+          Sube al ranking.
         </h1>
         <p style={s.heroSub}>
-          Share a daily outfit photo. The community scores it 1–10. Compete with your city and rise to the top of your country.
+          Comparte una foto de tu outfit cada día. La comunidad lo puntúa del 1 al 10. Compite con tu ciudad y sube al top de tu país.
         </p>
         <WaitlistForm />
-        <p style={s.heroNote}>Free · No spam · Early access</p>
+        <p style={s.heroNote}>Gratis · Sin spam · Acceso anticipado</p>
       </div>
 
       <div style={s.heroVisual} aria-hidden>
@@ -63,8 +63,8 @@ function Hero() {
           votes={284}
           accent="#208AEF"
           comments={[
-            { user: 'carlos_v', text: 'this fit goes so hard 🔥', side: 'right' },
-            { user: 'leila.r', text: 'obsessed with the layering', side: 'right' },
+            { user: 'carlos_v', text: 'este look es una pasada 🔥', side: 'right' },
+            { user: 'leila.r', text: 'el layering me tiene loca', side: 'right' },
           ]}
           reactions={[
             { emoji: '🔥', count: 47 },
@@ -146,31 +146,31 @@ function SocialProof() {
       score: '8.7',
       rank: '#1 Barcelona',
       accent: '#A855F7',
-      comment: { user: 'marta_g', text: 'ok the shoes make this 👌' },
+      comment: { user: 'marta_g', text: 'las zapatillas lo hacen todo 👌' },
     },
     {
       username: 'ana_v',
       location: 'Valencia',
       score: '9.3',
-      rank: '#1 Spain 🇪🇸',
+      rank: '#1 España 🇪🇸',
       accent: '#F59E0B',
-      comment: { user: 'javi.m', text: 'top 1 spain deserved!!!' },
+      comment: { user: 'javi.m', text: 'top 1 España bien merecido!!!' },
     },
     {
       username: 'nour.k',
-      location: 'Paris',
+      location: 'París',
       score: '8.2',
-      rank: '#2 Paris',
+      rank: '#2 París',
       accent: '#EC4899',
-      comment: { user: 'theo_r', text: 'parisian energy 🥐✨' },
+      comment: { user: 'theo_r', text: 'vibra parisina total 🥐✨' },
     },
   ];
 
   return (
     <section style={s.socialSection}>
       <div style={s.sectionInner}>
-        <p style={s.sectionTag}>Live on Oge</p>
-        <h2 style={s.sectionTitle}>Real looks. Real scores.</h2>
+        <p style={s.sectionTag}>En Oge ahora mismo</p>
+        <h2 style={s.sectionTitle}>Looks reales. Puntuaciones reales.</h2>
         <div style={s.cardRow}>
           {cards.map((c) => (
             <div key={c.username} style={s.socialCard}>
@@ -199,15 +199,15 @@ function SocialProof() {
               <div style={s.socialActions}>
                 <div style={s.socialAction}>
                   <span>⭐</span>
-                  <span style={s.socialActionLabel}>Rate</span>
+                  <span style={s.socialActionLabel}>Puntuar</span>
                 </div>
                 <div style={s.socialAction}>
                   <span>🔖</span>
-                  <span style={s.socialActionLabel}>Save</span>
+                  <span style={s.socialActionLabel}>Guardar</span>
                 </div>
                 <div style={s.socialAction}>
                   <span>↗</span>
-                  <span style={s.socialActionLabel}>Share</span>
+                  <span style={s.socialActionLabel}>Compartir</span>
                 </div>
               </div>
             </div>
@@ -222,26 +222,26 @@ function HowItWorks() {
   const steps = [
     {
       number: '01',
-      title: 'Post your daily outfit',
-      desc: 'One photo per day. Your look, your moment — no do-overs.',
+      title: 'Publica tu outfit del día',
+      desc: 'Una foto al día. Tu look, tu momento — sin repeticiones.',
     },
     {
       number: '02',
-      title: 'The community rates it',
-      desc: 'Swipe up or down to score outfits from 1 to 10. Honest, anonymous votes.',
+      title: 'La comunidad lo puntúa',
+      desc: 'Desliza para puntuar outfits del 1 al 10. Votos honestos y anónimos.',
     },
     {
       number: '03',
-      title: 'Climb the ranking',
-      desc: 'Compete for the top spot in your city and country. Rankings reset every day.',
+      title: 'Sube al ranking',
+      desc: 'Compite por el top de tu ciudad y tu país. El ranking se reinicia cada día.',
     },
   ];
 
   return (
     <section style={s.section}>
       <div style={s.sectionInner}>
-        <p style={s.sectionTag}>How it works</p>
-        <h2 style={s.sectionTitle}>Simple. Social. Competitive.</h2>
+        <p style={s.sectionTag}>Cómo funciona</p>
+        <h2 style={s.sectionTitle}>Simple. Social. Competitivo.</h2>
         <div style={s.steps}>
           {steps.map((step) => (
             <div key={step.number} style={s.step}>
@@ -260,41 +260,41 @@ function Features() {
   const features = [
     {
       icon: '📍',
-      title: 'Your city. Your country.',
-      desc: 'See what people are wearing near you. Filter by city or country and discover local style.',
+      title: 'Tu ciudad. Tu país.',
+      desc: 'Descubre qué llevan cerca de ti. Filtra por ciudad o país y encuentra el estilo local.',
     },
     {
       icon: '⚡',
-      title: 'One outfit a day',
-      desc: 'The daily limit keeps it real. No spam, no noise — just one shot to impress.',
+      title: 'Un outfit al día',
+      desc: 'El límite diario lo hace real. Sin spam, sin ruido — una sola oportunidad para impresionar.',
     },
     {
       icon: '🏆',
-      title: 'Daily rankings',
-      desc: 'Every day is a new competition. Top outfits rise, the rankings reset at midnight.',
+      title: 'Rankings diarios',
+      desc: 'Cada día es una nueva competición. Los mejores outfits suben, el ranking se reinicia a medianoche.',
     },
     {
       icon: '👁️',
-      title: 'Curated feed',
-      desc: 'Set your preference — menswear, womenswear, or both — and see what matters to you.',
+      title: 'Feed personalizado',
+      desc: 'Elige tu preferencia — moda masculina, femenina o ambas — y ve lo que te interesa.',
     },
     {
       icon: '🗂️',
-      title: 'Collections',
-      desc: 'Save outfits you love and organize them. Subscribe to collections from other users.',
+      title: 'Colecciones',
+      desc: 'Guarda los outfits que te gustan y organízalos. Suscríbete a colecciones de otros usuarios.',
     },
     {
       icon: '🌍',
-      title: 'Global community',
-      desc: 'Compete locally, discover globally. See top outfits from cities around the world.',
+      title: 'Comunidad global',
+      desc: 'Compite localmente, descubre globalmente. Ve los mejores outfits de ciudades de todo el mundo.',
     },
   ];
 
   return (
     <section style={{ ...s.section, background: 'rgba(255,255,255,0.02)' }}>
       <div style={s.sectionInner}>
-        <p style={s.sectionTag}>Features</p>
-        <h2 style={s.sectionTitle}>Everything you need to stand out.</h2>
+        <p style={s.sectionTag}>Funcionalidades</p>
+        <h2 style={s.sectionTitle}>Todo lo que necesitas para destacar.</h2>
         <div style={s.featureGrid}>
           {features.map((f) => (
             <div key={f.title} style={s.featureCard}>
@@ -314,9 +314,9 @@ function WaitlistSection() {
     <section id="waitlist" style={s.waitlistSection}>
       <div style={s.waitlistInner}>
         <img src="/oge-logo.png" alt="Oge" style={s.waitlistLogo} />
-        <h2 style={s.waitlistTitle}>Be the first to know.</h2>
+        <h2 style={s.waitlistTitle}>Sé el primero en entrar.</h2>
         <p style={s.waitlistSub}>
-          Oge is launching soon on iOS and Android. Join the waitlist and get early access when we open the doors.
+          Oge llega pronto a iOS y Android. Apúntate a la lista de espera y consigue acceso anticipado cuando abramos las puertas.
         </p>
         <WaitlistForm />
       </div>
@@ -330,11 +330,11 @@ function Footer() {
       <div style={s.footerInner}>
         <img src="/oge-logo.png" alt="Oge" style={{ width: 32, height: 32, objectFit: 'contain' }} />
         <div style={s.footerLinks}>
-          <a href="/terms" style={s.footerLink}>Terms</a>
-          <a href="/privacy" style={s.footerLink}>Privacy</a>
-          <a href="mailto:hello@ogeapp.com" style={s.footerLink}>Contact</a>
+          <a href="/terms" style={s.footerLink}>Términos</a>
+          <a href="/privacy" style={s.footerLink}>Privacidad</a>
+          <a href="mailto:hello@ogeapp.com" style={s.footerLink}>Contacto</a>
         </div>
-        <p style={s.footerCopy}>© {new Date().getFullYear()} Oge. All rights reserved.</p>
+        <p style={s.footerCopy}>© {new Date().getFullYear()} Oge. Todos los derechos reservados.</p>
       </div>
     </footer>
   );
@@ -491,7 +491,7 @@ const s: Record<string, React.CSSProperties> = {
     borderTop: '1px solid rgba(255,255,255,0.05)',
   },
   waitlistInner: { maxWidth: 560, margin: '0 auto', textAlign: 'center' as React.CSSProperties['textAlign'], display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 20 },
-  waitlistLogo: { width: 120, height: 120, objectFit: 'contain', marginBottom: 4 },
+  waitlistLogo: { width: 100, height: 100, objectFit: 'contain', marginBottom: 4, background: '#fff', borderRadius: 28, padding: 12 },
   waitlistTitle: { fontSize: 'clamp(28px, 4vw, 44px)', fontWeight: 800, letterSpacing: -1, margin: 0, color: '#fff' },
   waitlistSub: { fontSize: 16, color: '#555', lineHeight: 1.7, margin: 0 },
 
