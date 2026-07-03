@@ -330,10 +330,7 @@ function Footer() {
   return (
     <footer style={s.footer}>
       <div style={s.footerInner}>
-        <div style={s.navLogo}>
-          <img src="/oge-logo.png" alt="Oge" style={s.navLogoImg} />
-          <span style={s.navLogoText}>Oge</span>
-        </div>
+        <img src="/oge-logo.png" alt="Oge" style={{ width: 32, height: 32, objectFit: 'contain' }} />
         <div style={s.footerLinks}>
           <a href="/terms" style={s.footerLink}>Terms</a>
           <a href="/privacy" style={s.footerLink}>Privacy</a>
@@ -357,9 +354,9 @@ const s: Record<string, React.CSSProperties> = {
     WebkitBackdropFilter: 'blur(20px)',
   },
   navInner: { maxWidth: 1100, margin: '0 auto', padding: '0 24px', height: 60, display: 'flex', alignItems: 'center', justifyContent: 'space-between' },
-  navLogo: { display: 'flex', alignItems: 'center', gap: 8 },
-  navLogoImg: { width: 28, height: 28, objectFit: 'contain' },
-  navLogoText: { fontSize: 17, fontWeight: 800, color: '#fff', letterSpacing: -0.3 },
+  navLogo: { display: 'flex', alignItems: 'center' },
+  navLogoImg: { width: 36, height: 36, objectFit: 'contain' },
+  navLogoText: { display: 'none' },
   navCta: { padding: '8px 18px', borderRadius: 50, background: '#208AEF', color: '#fff', fontSize: 14, fontWeight: 600, textDecoration: 'none' },
 
   // Hero
