@@ -47,7 +47,7 @@ function Hero() {
         <h1 style={s.heroTitle}>
           Publica tu outfit.<br />
           <span style={s.heroAccent}>Recibe puntuaciones.</span><br />
-          Sube al ranking.
+          Sube en el ranking.
         </h1>
         <p style={s.heroSub}>
           Comparte una foto de tu outfit cada día. La comunidad lo puntúa del 1 al 10. Compite con tu ciudad y sube al top de tu país.
