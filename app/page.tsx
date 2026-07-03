@@ -1,7 +1,7 @@
 import { WaitlistForm } from '@/app/components/waitlist-form';
 
 export const metadata = {
-  title: 'Oge — Daily Outfit Rater',
+  title: 'Oge',
   description: 'Post your outfit. Get rated. Climb the ranking. The social app where style meets competition.',
   openGraph: {
     title: 'Oge — Daily Outfit Rater',
