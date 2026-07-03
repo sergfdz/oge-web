@@ -39,6 +39,7 @@ function Hero() {
   return (
     <section style={s.hero}>
       <div style={s.heroInner}>
+        <img src="/oge-logo.png" alt="Oge" style={s.heroLogo} />
         <div style={s.badge}>
           <span style={s.badgeDot} />
           Próximamente en iOS y Android
@@ -364,6 +365,7 @@ const s: Record<string, React.CSSProperties> = {
     gap: 60, flexWrap: 'wrap' as React.CSSProperties['flexWrap'],
   },
   heroInner: { flex: 1, minWidth: 300, display: 'flex', flexDirection: 'column', gap: 24 },
+  heroLogo: { width: 72, height: 72, objectFit: 'contain' },
   badge: {
     display: 'inline-flex', alignItems: 'center', gap: 7,
     background: 'rgba(32,138,239,0.12)', border: '1px solid rgba(32,138,239,0.3)',
