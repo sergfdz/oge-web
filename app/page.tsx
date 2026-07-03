@@ -491,7 +491,7 @@ const s: Record<string, React.CSSProperties> = {
     borderTop: '1px solid rgba(255,255,255,0.05)',
   },
   waitlistInner: { maxWidth: 560, margin: '0 auto', textAlign: 'center' as React.CSSProperties['textAlign'], display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 20 },
-  waitlistLogo: { width: 100, height: 100, objectFit: 'contain', marginBottom: 4, background: '#fff', borderRadius: 28, padding: 12 },
+  waitlistLogo: { width: 110, height: 110, objectFit: 'contain', marginBottom: 4 },
   waitlistTitle: { fontSize: 'clamp(28px, 4vw, 44px)', fontWeight: 800, letterSpacing: -1, margin: 0, color: '#fff' },
   waitlistSub: { fontSize: 16, color: '#555', lineHeight: 1.7, margin: 0 },
 
